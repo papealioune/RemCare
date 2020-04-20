@@ -1,4 +1,4 @@
-# stay
+# Stay home, Stay safe
 
 ## Project setup
 ```
