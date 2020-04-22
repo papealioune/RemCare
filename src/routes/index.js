@@ -9,9 +9,10 @@ import PatientDataView from '../components/PatientDataView'
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
+    routes: [
+        {
             path: "/",
-            redirect: "login"
+            redirect: "patient"
         },
         {
             path: "/patient",

@@ -5,13 +5,13 @@ import vuetify from '@/plugins/vuetify' // path to vuetify export
 import store from './store/'
 import route from "./routes/"
 
-import i18n from '@/plugins/i18n';
+//import i18n from '@/plugins/i18n';
 
 Vue.config.productionTip = false
 new Vue({
   router: route,
   vuetify,
   store,
-  i18n,
+  //i18n,
   render: h => h(App)
 }).$mount('#app')

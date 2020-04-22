@@ -4,6 +4,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        registredUsers:[],
+        selectedCenter: "",
+        registredPatients: [],
+        patientDataToRequest: {},
+        showPatientDataModal: false,
     }
 })

@@ -1,7 +1,7 @@
 <template>
-<v-container
-  fluid
-  >
+  <v-container
+    fluid
+    >
     <v-app-bar
       color="#ff954f"
     >

@@ -3,7 +3,12 @@
 
 <v-app>
   <v-app-bar app>
-    <!-- -->
+    <v-toolbar-title
+      id="appName"
+      :ripple="{ center: true }"
+    >
+      RemCare
+    </v-toolbar-title>
   </v-app-bar>
 
   <!-- Sizes your content based upon application components -->
@@ -62,3 +67,10 @@
     },
   }
 </script>
+
+<style>
+#appName {
+  font-size: 30px;
+  color:coral;
+}
+</style>
