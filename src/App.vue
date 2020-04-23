@@ -60,7 +60,7 @@
           {
             text: "History",
             icon: "mdi-history",
-            to: "/map"
+            to: "/history"
           }
         ]
       }

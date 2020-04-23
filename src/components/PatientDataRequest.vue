@@ -1,39 +1,81 @@
 <template>
-  <v-stepper v-model="e6" vertical>
-    <v-stepper-step :complete="e6 > 1" step="1">
-      Select an app
-      <small>Summarize if needed</small>
-    </v-stepper-step>
+  <container fluid>
+    <v-app-bar
+      color="#ff954f"
+    >
+      <v-toolbar-title>Request Data</v-toolbar-title>
+    </v-app-bar>
+    <v-stepper v-model="e6" vertical>
+      <v-row>
+        <v-col
+          cols="12"
+          md="4"
+        >
+        <v-stepper-step color="#82cdff" :complete="e6 > 1" step="1">Enter Patient id</v-stepper-step>
+        <v-stepper-content step="1">
+          <v-card color="grey lighten-1" class="mb-12" height="200px">
+            <v-card-text>
+              <v-text-field
+                :rules="patientIdRules"
+                :counter="20"
+                label="Patient Id"
+                required
+              >
+              </v-text-field>
+            </v-card-text>
+          </v-card>
+          <v-btn color="#82cdff" @click="e6 = 2">Continue</v-btn>
+          <v-btn text>Cancel</v-btn>
+        </v-stepper-content>
+        </v-col>
 
-    <v-stepper-content step="1">
-      <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-      <v-btn color="primary" @click="e6 = 2">Continue</v-btn>
-      <v-btn text>Cancel</v-btn>
-    </v-stepper-content>
+        <v-col
+          cols="12"
+          md="4"
+        >
+        <v-stepper-step color="#82cdff" :complete="e6 > 2" step="2">Patient Phone Number</v-stepper-step>
+        <v-stepper-content step="2">
+          <v-card color="grey lighten-1" class="mb-12" height="200px">
+            <v-card-text>
+              <v-text-field
+                :rules="patientPhoneRules"
+                label="Phone Number"
+                required
+              >
+              </v-text-field>
+            </v-card-text>
+          </v-card>
+          <v-btn color="#82cdff" @click="e6 = 3">Continue</v-btn>
+          <v-btn text>Cancel</v-btn>
+        </v-stepper-content>
+        </v-col>
 
-    <v-stepper-step :complete="e6 > 2" step="2">Configure analytics for this app</v-stepper-step>
-
-    <v-stepper-content step="2">
-      <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-      <v-btn color="primary" @click="e6 = 3">Continue</v-btn>
-      <v-btn text>Cancel</v-btn>
-    </v-stepper-content>
-
-    <v-stepper-step :complete="e6 > 3" step="3">Select an ad format and name ad unit</v-stepper-step>
-
-    <v-stepper-content step="3">
-      <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-      <v-btn color="primary" @click="e6 = 4">Continue</v-btn>
-      <v-btn text>Cancel</v-btn>
-    </v-stepper-content>
-
-    <v-stepper-step step="4">View setup instructions</v-stepper-step>
-    <v-stepper-content step="4">
-      <v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
-      <v-btn color="primary" @click="e6 = 1">Continue</v-btn>
-      <v-btn text>Cancel</v-btn>
-    </v-stepper-content>
-  </v-stepper>
+        <v-col
+          cols="12"
+          md="4"
+        >
+        <v-stepper-step color="#82cdff" :complete="e6 > 3" step="3">Why do you need the data</v-stepper-step>
+        <v-stepper-content step="3">
+          <v-card color="grey lighten-1" class="mb-12" height="200px">
+            <v-card-text>
+              <v-select
+                :items="reasons"
+                label="Reason"
+                outlined
+              >
+              </v-select>
+            </v-card-text>
+          </v-card>
+          <v-btn color="#82cdff" @click="e6 = 4">Continue</v-btn>
+          <v-btn text>Cancel</v-btn>
+        </v-stepper-content>
+        </v-col>
+      </v-row>
+    </v-stepper>
+    <div class="text-center">
+        <v-sheet color="#82cdff">Set the patient id to request data related to your patients</v-sheet>
+    </div>
+  </container>
 </template>
 
 <script>
@@ -41,6 +83,15 @@
     data () {
       return {
         e6: 1,
+        patientIdRules: [
+          value => !!value || 'Required.',
+          value => (value || '').length <= 20 || 'Max 20 characters',
+        ],
+        patientPhoneRules: [
+          value => !!value || 'Required.',
+          value => (value || '').length <= 13 || 'Max 20 characters',
+        ],
+        reasons: ['Monitoring', 'Tracking'],
       }
     },
   }

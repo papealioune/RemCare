@@ -35,6 +35,7 @@
           <v-card-actions>
             <v-col class="text-center">
               <v-btn
+                color="#82cdff"
                 :ripple="{ center: true }"
               >
                 {{ choice.btn }}

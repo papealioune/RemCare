@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import PatientView from '../views/PatientView';
-import MapView from '../views/MapView';
+import ViewCenter from '../views/ViewCenter';
 import PatientDataRequest from '../components/PatientDataRequest'
 import PatientDataView from '../components/PatientDataView'
 
@@ -21,8 +21,8 @@ export default new Router({
         },
         {
             path: "/map",
-            name: "mapview",
-            component: MapView
+            name: "viewcenter",
+            component: ViewCenter
         },
         {
             path: "/patientdatarequest",
