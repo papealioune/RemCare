@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import PatientView from '../views/PatientView';
-import ViewCenter from '../views/ViewCenter';
-import PatientDataRequest from '../components/PatientDataRequest'
-import PatientDataView from '../components/PatientDataView'
+import Vendor from '../views/Vendor'
+import Center from '../views/Center'
+import ViewCenter from '../views/ViewCenter'
+import CenterDataRequest from '../components/CenterDataRequest'
+import CentersView from '../components/CentersView'
 
 Vue.use(Router)
 
@@ -12,27 +13,32 @@ export default new Router({
     routes: [
         {
             path: "/",
-            redirect: "patient"
+            redirect: "center"
         },
         {
-            path: "/patient",
-            name: "patient",
-            component: PatientView
+            path: "/center",
+            name: "center",
+            component: Center
         },
         {
-            path: "/map",
+            path: "/communitycenters",
             name: "viewcenter",
             component: ViewCenter
         },
         {
-            path: "/patientdatarequest",
-            name: "patientdatarequest",
-            component: PatientDataRequest
+            path: "/vendor",
+            name: "vendor",
+            component: Vendor
         },
         {
-            path: "/patientdataview",
-            name: "patientdataview",
-            component: PatientDataView
+            path: "/centerDataRequest",
+            name: "centerDataRequest",
+            component: CenterDataRequest
+        },
+        {
+            path: "/centerview",
+            name: "centerview",
+            component: CentersView
         },
     ],
     mode: "history"

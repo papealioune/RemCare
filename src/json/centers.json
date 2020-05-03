@@ -1,0 +1,72 @@
+[
+    {
+      "type": "Feature",
+      "properties": {
+        "phone_number": "+270712311111", 
+        "name": "Community Center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.661386,
+          -13.344401
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "phone_number": "+327612435211", 
+        "name": "Community Center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.366524,
+          -14.385072
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "phone_number": "+534212436834", 
+        "name": "Community Center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.479383,
+          -8.856348
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "phone_number": "+342512439846", 
+        "name": "Community Center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.347223,
+          -16.328945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "phone_number": "+325414039485", 
+        "name": "Community Center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.515999,
+          -33.312872
+        ]
+      }
+    }
+  ]

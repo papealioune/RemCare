@@ -1,65 +1,112 @@
 <template>
-    <v-container align-center justify-center row fill-height>
-        <v-layout>
-            <v-flex>
-                <v-toolbar color="#ff954f" dark>
-                    <v-toolbar-title>Centers</v-toolbar-title>
+<v-container fluid>
+    <v-row>
+        <v-col cols="12">
+            <v-row style="height: 73vh;">
+                <v-toolbar color="#ff954f">
+                    <v-toolbar-title>Registered Centers</v-toolbar-title>
                     <v-spacer></v-spacer>
                 </v-toolbar>
-                <LMap :zoom="zoom" :center="center" style="z-index:1;">
-                    <LIconDefault></LIconDefault>
-                    <LTileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></LTileLayer>
-                    <v-marker-cluster :options="clusterOptions" @clusterclick="sheet=true;">
-                        <LMarker v-for="venue in venueLocations" :key="venue.name+venue.position" :lat-lng="venue.position" :icon="icon" :color="venue.color">
-                            <LPopup :content="venue.description">
-                            </LPopup>
-                        </LMarker>
+                <v-map :zoom=10 :center="center" style="z-index:1">
+                    <v-icondefault></v-icondefault>
+                    <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
+                    <v-marker-cluster :options="clusterOptions" @clusterclick="click()">
+                        <v-marker v-for="venue in centers" :key="venue.name+venue.position" :lat-lng="venue.position" :icon="icon">
+                            <v-popup :content="venue.description" >
+                            </v-popup>
+                        </v-marker>
                     </v-marker-cluster>
-                </LMap>
-            </v-flex>
-            <v-bottom-sheet v-model="sheet" :inset="true" :hide-overlay="true">
-                <v-sheet class="text-center" height="200px" align-center justify-center row fill-height>
-                    <v-btn class="my-6" depressed color="error" @click="sheet = !sheet">close</v-btn>
-                </v-sheet>
-            </v-bottom-sheet>
-        </v-layout>
-    </v-container>
+                </v-map>
+            </v-row>
+        </v-col>
+    </v-row>
+</v-container>
 </template>
 
 <script>
-import { L, Icon, icon } from 'leaflet';
+import * as Vue2Leaflet from 'vue2-leaflet'
+import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+import {
+    latLng,
+    Icon,
+    icon
+} from 'leaflet'
 import iconUrl from 'leaflet/dist/images/marker-icon.png'
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
-import { LMap, LTileLayer, LMarker, LIconDefault, LPopup } from 'vue2-leaflet';
-
 export default {
     components: {
-        LMap,
-        LTileLayer,
-        LMarker,
-        LIconDefault,
-        LPopup
+        'v-map': Vue2Leaflet.LMap,
+        'v-tilelayer': Vue2Leaflet.LTileLayer,
+        'v-icondefault': Vue2Leaflet.LIconDefault,
+        'v-marker': Vue2Leaflet.LMarker,
+        'v-popup': Vue2Leaflet.LPopup,
+        'v-marker-cluster': Vue2LeafletMarkerCluster
     },
     data() {
         return {
-            clusterOptions: {},
-            center: L.latLng(-33.311836, 26.520642),
+            url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+            attribution: '&copy; <a href=" http://osm.org/copyright">OpenStreetMap </a> contributors',
+            map: null,
+            center: window.L.latLng(-33.311836, 26.520642),
+            zoom: 18,
+            maxBoundsViscosity: 1.0,
+            layers: [window.L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, Points &copy 2012 LINZ'
+            })],
             icon: icon(Object.assign({}, Icon.Default.prototype.options, {
                 iconUrl,
                 shadowUrl
             })),
-            map: null,
-            sheet: false,
-            venueLocations: [],
-            zoom: 2,
+            clusterOptions: {},
+            centers: []
         }
     },
-    mounted() {
-        
+    watch: {
+        map: function () {
+            this.$forceUpdate()
+        }
     },
-};
+    created() {
+        console.log('L', window)
+        this.centers = this.initMap(this);
+        setTimeout(() => {
+            console.log('done')
+            this.$nextTick(() => {
+                this.clusterOptions = {
+                    disableClusteringAtZoom: 11
+                }
+            });
+        }, 5000);
+    },
+    methods: {
+        initMap(_this) {
+            var venues = require('../json/centers.json')
+            console.log('this.centers ', _this)
+            var centers = []
+            venues.forEach((venue) => {
+                centers.push({
+                    name: venue.properties.name,
+                    description: "<b>Name:</b> " + venue.properties.name +
+                        "</b></br><b>Phone Number:  </b>" + venue.properties.phone_number,
+                    position: latLng(
+                        venue.geometry.coordinates[1], venue.geometry.coordinates[0]
+                    )
+                })
+            })
+            console.log('return centers: ', centers)
+            return centers
+        },
+    }
+}
 </script>
 
 <style scoped>
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 
+#map {
+    height: 100%;
+}
 </style>

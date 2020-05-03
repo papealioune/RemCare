@@ -4,9 +4,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        selectedCenter: "",
-        registredPatients: [],
-        patientDataToRequest: {},
-        showPatientDataModal: false,
+        showOnMap: false,
+        selectedVendor: {},
+        centerToRegister:{},
+        ethAddressModal: false,
     }
 })
