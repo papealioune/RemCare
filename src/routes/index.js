@@ -3,8 +3,8 @@ import Router from 'vue-router'
 
 import Vendor from '../views/Vendor'
 import Center from '../views/Center'
+import History from '../views/History'
 import ViewCenter from '../views/ViewCenter'
-import CenterDataRequest from '../components/CenterDataRequest'
 import CentersView from '../components/CentersView'
 
 Vue.use(Router)
@@ -31,15 +31,15 @@ export default new Router({
             component: Vendor
         },
         {
-            path: "/centerDataRequest",
-            name: "centerDataRequest",
-            component: CenterDataRequest
-        },
-        {
             path: "/centerview",
             name: "centerview",
             component: CentersView
         },
+        {
+            path: "/history",
+            name: "history",
+            component: History
+        }
     ],
     mode: "history"
 })

@@ -9,7 +9,7 @@
             <v-card>
                 <v-container fluid>
                     <v-row>
-                        <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
+                        <v-col v-for="n in 9" :key="n" class="child-flex" cols="2">
                             <v-card class="mx-auto" max-width="400">
                                 <v-img class="black--text align-end" height="200px" src="https://empoweringcpo.com/wp-content/uploads/2017/04/how-to-negotiate-with-courier-and-small-parcel-vendors.jpg">
                                     <v-card-title>Vendor Name</v-card-title>
