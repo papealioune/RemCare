@@ -13,45 +13,114 @@
 
         <!-- Provides the application the proper gutter -->
         <v-container fluid>
-            <!-- If using vue-router -->
-            <router-view></router-view>
-            <v-bottom-navigation :value="activeBtn" fixed color="orange lighten-2" absolute  hide-on-scroll scroll-threshold="500" horizontal>
-                <v-btn v-for="(option,i) in options" :key="i" :to="option.to">
-                    <span>{{ option.text }}</span>
-                </v-btn>
-
-            </v-bottom-navigation>
+            <template>
+                <v-card>
+                    <v-tabs background-color="white" color="orange" right>
+                        <v-tab>Donate</v-tab>
+                        <v-tab>My Donations</v-tab>
+                        <v-tab-item >
+                            <v-container fluid>
+                                <v-row>
+                                    <v-col v-for="(community ,$index) in communityCenter" :key="$index" cols="12" md="4" :items="$store.state.communityCenter">
+                                        <template>
+                                            <v-card class="mx-auto" max-width="400">
+                                                <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+                                                    <v-card-title>{{ community.name }}</v-card-title>
+                                                </v-img>
+                                                <v-card-subtitle class="pb-0">Phone Number</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.phoneNumber }}</div>
+                                                </v-card-text>
+                                                 <v-card-subtitle class="pb-0">City</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.city }}</div>
+                                                </v-card-text>
+                                                    <v-card-subtitle class="pb-0">About</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.about }}</div>
+                                                </v-card-text>
+                                                <v-card-actions>
+                                                    <v-btn color="orange" text @click="donate()">
+                                                        Donate
+                                                    </v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </template>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+                        </v-tab-item>
+                        <v-tab-item >
+                            <v-container fluid>
+                                <v-row>
+                                    <v-col v-for="(community ,$index) in communityCenter" :key="$index" cols="12" md="4" :items="$store.state.communityCenter">
+                                        <template>
+                                            <v-card class="mx-auto" max-width="400">
+                                                <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+                                                    <v-card-title>Community center name</v-card-title>
+                                                </v-img>
+                                                <v-card-subtitle class="pb-0">Phone Number</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.phoneNumber }}</div>
+                                                </v-card-text>
+                                                 <v-card-subtitle class="pb-0">City</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.city }}</div>
+                                                </v-card-text>
+                                                    <v-card-subtitle class="pb-0">About</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.about }}</div>
+                                                </v-card-text>
+                                                <v-card-actions>
+                                                    <v-btn color="orange" text @click="confirm()">
+                                                        Revoke Donation
+                                                    </v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </template>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+                        </v-tab-item>
+                    </v-tabs>
+                </v-card>
+            </template>
+            <DonateModal/>
+            <ConfirmDonationRevoke />
         </v-container>
     </v-content>
 </v-app>
 </template>
 
 <script>
-//import PatientView from 'component/PatientView';
+import DonateModal from './views/DonateModal';
+import ConfirmDonationRevoke from './components/ConfirmDonationRevoke'
 
 export default {
+    components:{
+        DonateModal,
+        ConfirmDonationRevoke
+    },
     data() {
         return {
-            activeBtn: 0,
-            options: [{
-                    text: "Center",
-                    to: "/center"
-                },
-                {
-                    text: "Community Centers",
-                    to: "/communitycenters"
-                },
-                {
-                    text: "Vendor",
-                    to: "/vendor"
-                },
-                {
-                    text: "History",
-                    to: "/history"
-                }
-            ]
+            communityCenter: {},
         }
     },
+    beforeMount() {
+        this.filterCommunity();
+    },
+    methods: {
+        filterCommunity($state) {
+            this.communityCenter = this.$store.state.communityCenter
+            $state.complete();
+        },
+        donate() {
+            this.$store.state.donateModal = true
+        },
+        confirm() {
+            this.$store.state.confirmDonationRevoke = true
+        },
+    }
 }
 </script>
 

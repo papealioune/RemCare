@@ -4,17 +4,12 @@ import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import vuetify from '@/plugins/vuetify' // path to vuetify export
 import store from './store/'
 import route from "./routes/"
-
-import { Icon } from 'leaflet'
-import 'leaflet/dist/leaflet.css'
-
-delete Icon.Default.prototype._getIconUrl;
-Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-});
-//import i18n from '@/plugins/i18n';
+import { Datetime } from 'vue-datetime'
+// You need a specific loader for CSS files
+import 'vue-datetime/dist/vue-datetime.css'
+ 
+Vue.use(Datetime)
+Vue.component('datetime', Datetime);
 
 Vue.config.productionTip = false
 new Vue({

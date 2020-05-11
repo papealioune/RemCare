@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+import token from '../json/token.json'
+import community from '../json/community.json'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        parcels: [],
-        showOnMap: false,
-        registeredVendor: [],
-        selectedVendor: {},
-        centerToRegister:{},
-        ethAddressModal: false,
-        vendorMapPopup: false,
-        parcelsListPopup: false
+        tokens: token,
+        donateModal: false,
+        communityCenter: community,
+        confirmDonationRevoke: false,
     }
 })
