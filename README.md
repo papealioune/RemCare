@@ -21,6 +21,12 @@ Blockchain provides the ability to quickly trace the origin of donations, this f
 ### Secure Record
 Blockchain technology could securely record information and trace donations right from the donor, down to the beneficiary.
 
+## Presentation
+https://docs.google.com/uc?export=download&id=1JESBh5DGHRHAbIMrRT--3ikKq2hqjL1g
+
+## Video Demo
+https://drive.google.com/file/d/1ysizB_UizRet94gWEzk7b64BmQEHI5u6/view
+
 ## Project setup
 ```
 npm install
