@@ -19,6 +19,7 @@
                         <v-tab>Donate</v-tab>
                         <v-tab>My Donations</v-tab>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <v-tab-item>
                             <v-container fluid>
                                 <v-row>
@@ -47,6 +48,8 @@
                                                 <v-card-actions>
                                                     <v-btn color="orange" text @click="donate(center)">
 =======
+=======
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
                         <v-tab-item >
                             <v-container fluid>
                                 <v-row>
@@ -70,6 +73,9 @@
                                                 </v-card-text>
                                                 <v-card-actions>
                                                     <v-btn color="orange" text @click="donate()">
+<<<<<<< HEAD
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
+=======
 >>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
                                                         Donate
                                                     </v-btn>
@@ -80,6 +86,7 @@
                                 </v-row>
                             </v-container>
                         </v-tab-item>
+<<<<<<< HEAD
 <<<<<<< HEAD
                         <v-tab-item>
                             <v-container fluid>
@@ -114,6 +121,8 @@
                                                 <v-card-text class="text--primary">
                                                     <div>{{ center.ratePerSecond }}</div>
 =======
+=======
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
                         <v-tab-item >
                             <v-container fluid>
                                 <v-row>
@@ -134,6 +143,9 @@
                                                     <v-card-subtitle class="pb-0">About</v-card-subtitle>
                                                 <v-card-text class="text--primary">
                                                     <div>{{ community.about }}</div>
+<<<<<<< HEAD
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
+=======
 >>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
                                                 </v-card-text>
                                                 <v-card-actions>
@@ -151,7 +163,11 @@
                 </v-card>
             </template>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <DonateModal />
+=======
+            <DonateModal/>
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
 =======
             <DonateModal/>
 >>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
@@ -165,6 +181,7 @@
 import DonateModal from './views/DonateModal';
 import ConfirmDonationRevoke from './components/ConfirmDonationRevoke'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import request from 'request'
 import swal from 'sweetalert2'
 import bigNumber from 'bignumber.js'
@@ -175,11 +192,17 @@ export default {
 export default {
     components:{
 >>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
+=======
+
+export default {
+    components:{
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
         DonateModal,
         ConfirmDonationRevoke
     },
     data() {
         return {
+<<<<<<< HEAD
 <<<<<<< HEAD
             centerCenters: {},
         }
@@ -252,6 +275,8 @@ export default {
             this.$store.state.donateModal = true
             this.$store.state.centerToDonate = center
 =======
+=======
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
             communityCenter: {},
         }
     },
@@ -265,11 +290,15 @@ export default {
         },
         donate() {
             this.$store.state.donateModal = true
+<<<<<<< HEAD
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
+=======
 >>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
         },
         confirm() {
             this.$store.state.confirmDonationRevoke = true
         },
+<<<<<<< HEAD
 <<<<<<< HEAD
         error(message) {
             swal.fire("Error", message, "error")
@@ -277,6 +306,8 @@ export default {
         success(message) {
             swal.fire("Success", message, "success")
         }
+=======
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
 =======
 >>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
     }

@@ -8,10 +8,13 @@ import { Datetime } from 'vue-datetime'
 // You need a specific loader for CSS files
 import 'vue-datetime/dist/vue-datetime.css'
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 Vue.use(Datetime)
 Vue.component('datetime', Datetime);
 =======
+=======
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
  
 Vue.use(Datetime)
 Vue.component('datetime', Datetime);
