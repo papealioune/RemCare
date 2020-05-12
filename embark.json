@@ -1,0 +1,22 @@
+{
+    "contracts": ["contracts/**"],
+    "app": {
+        
+    },
+    "buildDir": "dist/",
+    "generationDir": "embarkArtifacts/",
+    "config": "config/",
+    "versions": {
+        "solc": "0.5.10"
+    },
+    "options": {
+        "solc": {
+            "optimize": true,
+            "optimize-runs": 1000
+        }
+    },
+    "plugins": {
+    "embark-geth": {},
+    "embark-profiler": {}
+  }
+}

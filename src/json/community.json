@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Lomé Center",
+        "phoneNumber": "+22465342986",
+        "city": "Lome",
+        "about": "Our center is transparent certified by the gouvernment"
+    },
+    {
+        "name": "Abidjan Center",
+        "phoneNumber": "+22365342986",
+        "city": "Abidjan",
+        "about": "Our center is transparent certified by the gouvernment"
+    },
+    {
+        "name": "Pretoria Center",
+        "phoneNumber": "+22765342986",
+        "city": "Pretoria",
+        "about": "Our center is transparent certified by the gouvernment"
+    },
+    {
+        "name": "Bamako Center",
+        "phoneNumber": "+22365342986",
+        "city": "Bamako",
+        "about": "Our center is transparent certified by the gouvernment"
+    },
+    {
+        "name": "Lagos Center",
+        "phoneNumber": "+22465342986",
+        "city": "Lagos",
+        "about": "Our center is transparent certified by the gouvernment"
+    },
+    {
+        "name": "Khartoum Center",
+        "phoneNumber": "+22465342986",
+        "city": "Khartoum",
+        "about": "Our center is transparent certified by the gouvernment"
+    },
+    {
+        "name": "Rabat Center",
+        "phoneNumber": "+22465342986",
+        "city": "Rabat",
+        "about": "Our center is transparent certified by the gouvernment"
+    },
+    {
+        "name": "Accra Center",
+        "phoneNumber": "+22465342986",
+        "city": "Accra",
+        "about": "Our center is transparent certified by the gouvernment"
+    }
+]
