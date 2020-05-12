@@ -10,5 +10,5 @@
   "dappAutoEnable": true,
   "warnIfMetamask": false,
   "blockchainClient": "geth",
-  "networkId": 1589182594591
+  "networkId": 1589270213164
 }

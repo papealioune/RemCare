@@ -216,18 +216,22 @@ async function redeemParcel(parcelToken) {
                     }))
                     console.log('center-eth: ', centerEth)
                     var id = await Promise.resolve(getDonationId(centerEth.ethAddress))
-                    console.log('iddddd',id.donationId.donation_id)
-                    var receipt = await remCare.methods.redeemParcel(id.donationId.donation_id, config.utils.toHex(parcelToken)).send({
+                    console.log('iddddd',id.donationId.donation_id, config.utils.toHex(parcelToken))
+                    var receipt =  remCare.methods.redeemParcel(id.donationId.donation_id, config.utils.toHex(parcelToken)).send({
                         gas: 8000000,
                         from: config.defaultAccount
+                    }).then(async(receipt,error)=>{
+                        await Promise.resolve(updateParcelDetails(receipt.transactionHash, parcelToken))
+                        resolve({
+                            message: "Succesfully redeemed parcel",
+                            code: 200,
+                            redeemed: false,
+                            error: ""
+                        })
+                    }).catch((error)=>{
+                        console.log('error',error)
                     })
-                    await Promise.resolve(updateParcelDetails(receipt.transactionHash, parcelToken))
-                    resolve({
-                        message: "Succesfully redeemed parcel",
-                        code: 200,
-                        redeemed: false,
-                        error: ""
-                    })
+                  
                 }
             }
         })

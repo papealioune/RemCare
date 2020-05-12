@@ -31,6 +31,7 @@ countriesAfrica.data.forEach(country => {
     })
 })
 const utils = require('web3-utils')
+console.log('process.env.RemCareAddress',process.env.RemCareAddress)
 const remCare = new web3.eth.Contract(require('../contract-abis/RemCare.json'), process.env.RemCareAddress)
 module.exports = {
     secret: process.env.SECRET,

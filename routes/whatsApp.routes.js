@@ -9,9 +9,10 @@ async function handleRequest(req, res, next) {
     switch (body.toLowerCase()) {
         case "menu":
             var menu = helperFunctions.showMenu(userPhoneNumber)
-            res.status(200).send(
-                formatToTwiml(menu)
-            )
+            // res.status(200).send(
+            //     (menu)
+            //  )
+           // helperFunctions.sendError(userPhoneNumber, (menu))
             var actions = {
                 "user": userPhoneNumber,
                 "actions": [],
@@ -27,34 +28,35 @@ async function handleRequest(req, res, next) {
         case "1":
             if (userLastOptions && userLastOptions.processing) {
                 responseMessage = "🕛⚠️ Transaction in progress please wait..."
-                helperFunctions.sendError(userPhoneNumber, responseMessage)
-                res.status(200).send(
-                    formatToTwiml(responseMessage)
-                )
+                helperFunctions.sendError(userPhoneNumber, (responseMessage))
+                //     res.status(200).send(
+                //          (responseMessage)
+                //      )
             }
             if (userLastOptions) {
                 await handleOptionOnes(userPhoneNumber, userLastOptions, res, body)
             } else {
                 console.log('in else userLastOptions', userLastOptions.currentOption)
                 responseMessage = "Oops thats an invalid command ⚠️  Please use the 'menu' command to view menu"
+                helperFunctions.sendError(userPhoneNumber, (responseMessage))
                 //sendError(responseMessage)
-                res.status(200).send(
-                    formatToTwiml(responseMessage)
-                )
+                //    res.status(200).send(
+                //        (responseMessage)
+                //     )
             }
             break
         case "2":
             if (userLastOptions.processing) {
                 responseMessage = "🕛⚠️ Transaction in progress please wait..."
-                helperFunctions.sendError(userPhoneNumber, responseMessage)
-                res.status(200).send(
-                    formatToTwiml(responseMessage)
-                )
+                helperFunctions.sendError(userPhoneNumber, (responseMessage))
+                //     res.status(200).send(
+                //         (responseMessage)
+                //     )
             }
             if (userLastOptions) {
                 handleOptionTwos(userPhoneNumber, userLastOptions, res)
             } else {
-                helperFunctions.sendError("Oops thats an invalid option ⚠️ \nPlease ensure you select from the options listed")
+                helperFunctions.sendError(userPhoneNumber, ("Oops thats an invalid option ⚠️ \nPlease ensure you select from the options listed"))
             }
             break
         default:
@@ -69,16 +71,17 @@ async function handleRequest(req, res, next) {
                             userLastOptions.lastOption = "nearest"
                             userLastOptions.city = city
                             var centers = await Promise.resolve(helperFunctions.sendCityCenters(userPhoneNumber, userLastOptions))
-                            res.status(200).send(
-                                formatToTwiml(centers)
-                            )
+
+                            //    res.status(200).send(
+                            //         (centers)
+                            //     )
                         } catch (error) {
                             console.log(' nearest error: ', error)
                             responseMessage = "Oops thats an invalid city ⚠️  Please select a city from the list given"
-                            helperFunctions.sendError(userPhoneNumber, responseMessage)
-                            res.status(200).send(
-                                formatToTwiml(responseMessage)
-                            )
+                            helperFunctions.sendError(userPhoneNumber, (responseMessage))
+                            // res.status(200).send(
+                            //      (responseMessage)
+                            //  )
                         }
                         break
                     case "verifyToken":
@@ -86,26 +89,28 @@ async function handleRequest(req, res, next) {
                         var redeemedMessage = await Promise.resolve(helperFunctions.redeemToken(body))
                         if (!redeemedMessage.redeemed) {
                             helperFunctions.reset(userPhoneNumber)
-                            res.status(200).send(
-                                formatToTwiml(redeemedMessage.message)
-                            )
+                            helperFunctions.sendError(userPhoneNumber, (redeemedMessage.message))
+                            //            res.status(200).send(
+                            //                 (redeemedMessage.message)
+                            //             )
                         } else {
                             userLastOptions.currentOption = "verifyToken"
                             userLastOptions.lastOption = "redeem"
                             helperFunctions.saveCache(userPhoneNumber, userLastOptions)
-                            helperFunctions.sendError(userPhoneNumber, formatToTwiml(redeemedMessage.error))
-                            res.status(200).send(
-                                formatToTwiml(redeemedMessage.error)
-                            )
+                            helperFunctions.sendError(userPhoneNumber, (redeemedMessage.error))
+                            //                 res.status(200).send(
+                            //                    (redeemedMessage.error)
+                            //                 )
                         }
                         break
                 }
             } else {
                 responseMessage = "Oops thats an invalid command ⚠️  Please use the 'menu' command to view menu"
+                helperFunctions.sendError(userPhoneNumber, (responseMessage))
                 //sendError(responseMessage)
-                res.status(200).send(
-                    formatToTwiml(responseMessage)
-                )
+                //   res.status(200).send(
+                //        (responseMessage)
+                //    )
             }
             break
     }
@@ -126,18 +131,20 @@ async function handleOptionOnes(userPhoneNumber, userLastOptions, res, index) {
             userLastOptions.currentOption = "mainmenu"
             userLastOptions.lastOption = "menu"
             helperFunctions.saveCache(userPhoneNumber, userLastOptions)
-            res.status(200).send(
-                formatToTwiml(helperFunctions.showMainMenu(userPhoneNumber))
-            )
+            //   res.status(200).send(
+            //       (helperFunctions.showMainMenu(userPhoneNumber))
+            //   )
+            helperFunctions.showMainMenu(userPhoneNumber)
             break
         case "mainmenu":
             userLastOptions.currentOption = "nearest"
             userLastOptions.lastOption = "mainmenu"
             helperFunctions.saveCache(userPhoneNumber, userLastOptions)
             var options = helperFunctions.sendNearestCenterMenu(userPhoneNumber, userLastOptions)
-            res.status(200).send(
-                formatToTwiml(options)
-            )
+            //   res.status(200).send(
+            //        (options)
+            //    )
+            //helperFunctions.sendError(userPhoneNumber, (options))
             break
         case "cityCenters":
             console.log('in requsting token menu')
@@ -147,9 +154,10 @@ async function handleOptionOnes(userPhoneNumber, userLastOptions, res, index) {
             console.log('here between')
             var menu = await Promise.resolve(helperFunctions.sendParcelRequestTokenMenu(userPhoneNumber, userLastOptions.city))
             console.log('menu: ', menu)
-            res.status(200).send(
-                formatToTwiml(menu)
-            )
+            //    res.status(200).send(
+            //        (menu)
+            //    )
+            //helperFunctions.sendError(userPhoneNumber, (menu))
             break
         case "requestParcel":
             console.log('request parcel menu')
@@ -164,17 +172,19 @@ async function handleOptionOnes(userPhoneNumber, userLastOptions, res, index) {
                 console.log('center before message: ', center)
                 var message = await Promise.resolve(helperFunctions.sendUserParcelToken(userPhoneNumber, center))
                 console.log('message: ', message)
-                res.status(200).send(
-                    formatToTwiml(message + '\n\n\n\n\n\n\n\n' + helperFunctions.showMainMenu(userPhoneNumber))
-                )
+                //helperFunctions.sendError(userPhoneNumber, (message))
+                helperFunctions.showMainMenu(userPhoneNumber)
+                //     res.status(200).send(
+                //          (message + '\n\n\n\n\n\n\n\n' + helperFunctions.showMainMenu(userPhoneNumber))
+                //         )
             } catch (error) {
                 console.log('error: ', error)
                 var responseMessage = "Oops thats an invalid center ⚠️  Please select a center from the list given"
-                helperFunctions.sendError(userPhoneNumber, responseMessage)
+                helperFunctions.sendError(userPhoneNumber, (responseMessage))
 
-                res.status(200).send(
-                    formatToTwiml(responseMessage)
-                )
+                //    res.status(200).send(
+                //         (responseMessage)
+                //      )
             }
             break
     }
@@ -188,17 +198,18 @@ function handleOptionTwos(userPhoneNumber, userLastOptions, res) {
             userLastOptions.currentOption = "mainmenu"
             userLastOptions.lastOption = "menu"
             helperFunctions.saveCache(userPhoneNumber, userLastOptions)
-            res.status(200).send(
-                formatToTwiml(helperFunctions.showLangugageSelection(userPhoneNumber))
-            )
+            //    res.status(200).send(
+            //        (helperFunctions.showLangugageSelection(userPhoneNumber))
+            //    )
             break
-        case "mainmenu" ||"redeem":
+        case "mainmenu" || "redeem":
             userLastOptions.currentOption = "verifyToken"
             userLastOptions.lastOption = "mainmenu"
             helperFunctions.saveCache(userPhoneNumber, userLastOptions)
-            res.status(200).send(
-                formatToTwiml(helperFunctions.showRedeemMenu(userPhoneNumber))
-            )
+            helperFunctions.showRedeemMenu(userPhoneNumber)
+            //      res.status(200).send(
+            //        (helperFunctions.showRedeemMenu(userPhoneNumber))
+            //   )
             break
     }
 

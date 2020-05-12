@@ -81,7 +81,7 @@ function showMainMenu(userPhoneNumber) {
     \n3. Register Center 🏠
     \n0. back ↩
     `
-      messageCenter.sendMessageWhatsApp(userPhoneNumber,message)
+      messageCenter.sendMessageWhatsApp(userPhoneNumber,menu)
     return menu
 }
 
@@ -123,9 +123,10 @@ function sendNearestCenterMenu(userPhoneNumber, options) {
     })
     console.log('countries: ', countries)
     var country = selectedCountry[0].name
-    var cities = citiesAPI.getCities(country);  Returns an array of city names of the 
+    var cities = citiesAPI.getCities(country);  //Returns an array of city names of the 
     var message = "Please Select a City 🏠\n"
-    for (var i = 0, k = 1; i < cities.length; i++, k++) {
+    var length = cities.length>10?10:cities.length
+    for (var i = 0, k = 1; i < length; i++, k++) {
         message += `${k}. ${cities[i]} \n`
     }
     options.cities = cities
