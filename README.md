@@ -25,7 +25,7 @@ Blockchain technology could securely record information and trace donations righ
 https://docs.google.com/uc?export=download&id=1JESBh5DGHRHAbIMrRT--3ikKq2hqjL1g
 
 ## Video Demo
-https://drive.google.com/file/d/1ysizB_UizRet94gWEzk7b64BmQEHI5u6/view
+https://youtu.be/WU5R4jrWCL8
 
 ## Project setup
 ```
