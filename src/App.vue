@@ -18,6 +18,7 @@
                     <v-tabs background-color="white" color="orange" right>
                         <v-tab>Donate</v-tab>
                         <v-tab>My Donations</v-tab>
+<<<<<<< HEAD
                         <v-tab-item>
                             <v-container fluid>
                                 <v-row>
@@ -45,6 +46,31 @@
                                                 </v-card-text>
                                                 <v-card-actions>
                                                     <v-btn color="orange" text @click="donate(center)">
+=======
+                        <v-tab-item >
+                            <v-container fluid>
+                                <v-row>
+                                    <v-col v-for="(community ,$index) in communityCenter" :key="$index" cols="12" md="4" :items="$store.state.communityCenter">
+                                        <template>
+                                            <v-card class="mx-auto" max-width="400">
+                                                <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+                                                    <v-card-title>{{ community.name }}</v-card-title>
+                                                </v-img>
+                                                <v-card-subtitle class="pb-0">Phone Number</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.phoneNumber }}</div>
+                                                </v-card-text>
+                                                 <v-card-subtitle class="pb-0">City</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.city }}</div>
+                                                </v-card-text>
+                                                    <v-card-subtitle class="pb-0">About</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.about }}</div>
+                                                </v-card-text>
+                                                <v-card-actions>
+                                                    <v-btn color="orange" text @click="donate()">
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
                                                         Donate
                                                     </v-btn>
                                                 </v-card-actions>
@@ -54,6 +80,7 @@
                                 </v-row>
                             </v-container>
                         </v-tab-item>
+<<<<<<< HEAD
                         <v-tab-item>
                             <v-container fluid>
                                 <v-row>
@@ -86,6 +113,28 @@
                                                 <v-card-subtitle class="pb-0">Per Second</v-card-subtitle>
                                                 <v-card-text class="text--primary">
                                                     <div>{{ center.ratePerSecond }}</div>
+=======
+                        <v-tab-item >
+                            <v-container fluid>
+                                <v-row>
+                                    <v-col v-for="(community ,$index) in communityCenter" :key="$index" cols="12" md="4" :items="$store.state.communityCenter">
+                                        <template>
+                                            <v-card class="mx-auto" max-width="400">
+                                                <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+                                                    <v-card-title>Community center name</v-card-title>
+                                                </v-img>
+                                                <v-card-subtitle class="pb-0">Phone Number</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.phoneNumber }}</div>
+                                                </v-card-text>
+                                                 <v-card-subtitle class="pb-0">City</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.city }}</div>
+                                                </v-card-text>
+                                                    <v-card-subtitle class="pb-0">About</v-card-subtitle>
+                                                <v-card-text class="text--primary">
+                                                    <div>{{ community.about }}</div>
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
                                                 </v-card-text>
                                                 <v-card-actions>
                                                     <v-btn color="orange" text @click="confirm()">
@@ -101,7 +150,11 @@
                     </v-tabs>
                 </v-card>
             </template>
+<<<<<<< HEAD
             <DonateModal />
+=======
+            <DonateModal/>
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
             <ConfirmDonationRevoke />
         </v-container>
     </v-content>
@@ -111,16 +164,23 @@
 <script>
 import DonateModal from './views/DonateModal';
 import ConfirmDonationRevoke from './components/ConfirmDonationRevoke'
+<<<<<<< HEAD
 import request from 'request'
 import swal from 'sweetalert2'
 import bigNumber from 'bignumber.js'
 export default {
     components: {
+=======
+
+export default {
+    components:{
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
         DonateModal,
         ConfirmDonationRevoke
     },
     data() {
         return {
+<<<<<<< HEAD
             centerCenters: {},
         }
     },
@@ -191,16 +251,34 @@ export default {
         donate(center) {
             this.$store.state.donateModal = true
             this.$store.state.centerToDonate = center
+=======
+            communityCenter: {},
+        }
+    },
+    beforeMount() {
+        this.filterCommunity();
+    },
+    methods: {
+        filterCommunity($state) {
+            this.communityCenter = this.$store.state.communityCenter
+            $state.complete();
+        },
+        donate() {
+            this.$store.state.donateModal = true
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
         },
         confirm() {
             this.$store.state.confirmDonationRevoke = true
         },
+<<<<<<< HEAD
         error(message) {
             swal.fire("Error", message, "error")
         },
         success(message) {
             swal.fire("Success", message, "success")
         }
+=======
+>>>>>>> b4335c250f50c1b362815c7ada9402677a41ab96
     }
 }
 </script>
