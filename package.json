@@ -37,7 +37,7 @@
     "morgan": "^1.10.0",
     "node-2fa": "^1.1.2",
     "node-cache": "^5.1.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "node-uuid": "^1.4.8",
     "nodemailer": "^6.4.6",
     "nodemon": "^2.0.3",
